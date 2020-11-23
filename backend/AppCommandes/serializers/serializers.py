@@ -2,7 +2,7 @@ from ..models.models import *
 from rest_framework import serializers
 
 
-class CommandeSerializer(serializers.ModelSerializer):
+class MagasinSerializer(serializers.ModelSerializer):
     """
         Serializer is used to format data when post,put,get
         It take the new "object", check if it data correspond
@@ -12,13 +12,43 @@ class CommandeSerializer(serializers.ModelSerializer):
     """
 
     class Meta:
-        model = Commande
+        model = Magasin
         fields = "__all__"
 
 
-class HistoryActionSerializer(serializers.ModelSerializer):
+class RoleSerializer(serializers.ModelSerializer):
     class Meta:
-        model = HistoryAction
+        model = Role
+        fields = "__all__"
+
+
+class CategorieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Categorie
+        fields = "__all__"
+
+
+class AlleeReserveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AlleeReserve
+        fields = "__all__"
+
+
+class AlleeMagasinSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AlleeMagasin
+        fields = "__all__"
+
+
+class ProduitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Produit
+        fields = "__all__"
+
+
+class AlerteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Alerte
         fields = "__all__"
 
 

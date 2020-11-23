@@ -32,7 +32,7 @@ def get_client_ip(request):
 
 class CustomObtainAuthToken(ObtainAuthToken):
     """
-        Réponse csutom pour le login
+        Réponse custom pour le login
         Permet de garder les logs de chaque
         identification des utilisateurs
     """

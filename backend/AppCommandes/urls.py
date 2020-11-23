@@ -4,8 +4,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 from .views import *
 
 router = routers.DefaultRouter()
-router.register(r"commandes", CommandeViewSet)
-router.register(r"historique", HistoryActionViewSet)
+router.register(r"produits", ProduitViewSet)
 router.register(r"historique-login", HistoryLoginViewSet)
 router.register(r"support-app", SupportAppViewSet)
 
