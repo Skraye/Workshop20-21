@@ -1,19 +1,5 @@
 ### INSTALLATION DU PROJET
 
-## FRONT
-
-1. Installer node.js
-2. Lancer la commande
-   ```
-    npm i
-   ```
-   depuis le dossier front
-3. Démarrer le projet via
-   ```
-   npm run start
-   ```
-   un nouvel onglet s'ouvre dans votre navigateur par défaut, si jamais : http://localhost:3000 par défaut
-
 ## BACKEND
 
 1. Installer Python (avec Pip, inclus par défaut dans l'installer python)
