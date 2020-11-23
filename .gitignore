@@ -1,0 +1,6 @@
+/venv
+*.pyc
+/backend/AppCommandes/__pycache__
+backend/static/
+backend/AppCommandes/migrations/__pycache__
+/.vscode
