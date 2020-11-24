@@ -12,7 +12,8 @@ from django.contrib.auth.models import User
 def getUser(request):
     response_data = {}
     response_data["mail"] = request.user.email
-    response_data["isAdmin"] = request.user.is_superuser
+    response_data["isManager"] = request.user.is_superuser
+    response_data["role"] = request.user.role
     return Response(response_data, 200)
 
 
@@ -45,5 +46,10 @@ class CustomObtainAuthToken(ObtainAuthToken):
             mail=User.objects.get(username=request.data["username"]).email,
         )
         token = Token.objects.get(key=response.data["token"])
-        return Response({"token": token.key})
+        return Response({"username": request.data["username"], "token": token.key})
 
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def getUser(request):
+    return Response(response_data, 200)

@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     "AppCommandes.apps.AppcommandesConfig",
 ]
 
+
+AUTH_USER_MODEL = "AppCommandes.AppUser"
+
 MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",

@@ -51,6 +51,9 @@ class AlleeMagasinSerializer(serializers.ModelSerializer):
 
 
 class AlerteSerializer(serializers.ModelSerializer):
+    produit = ProduitSerializer(read_only=True)
+    alleeMagasin = AlleeMagasinSerializer()
+
     class Meta:
         model = Alerte
         fields = "__all__"

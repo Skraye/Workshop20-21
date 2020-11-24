@@ -1,7 +1,8 @@
-from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
 from datetime import datetime
+from django.db import models
 from django.db.models.signals import post_save
+from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Magasin(models.Model):
@@ -106,3 +107,12 @@ class SupportApp(models.Model):
     def __str__(self):
         return self.mailSupport
 
+
+class AppUser(AbstractUser):
+
+    role = models.ForeignKey(
+        Role, on_delete=models.SET_NULL, related_name="users", null=True
+    )
+
+    def __str__(self):
+        return self.email

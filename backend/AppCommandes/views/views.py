@@ -18,10 +18,10 @@ class CategorieViewSet(viewsets.ModelViewSet):
     serializer_class = CategorieSerializer
 
 
-class CategorieViewSet(viewsets.ModelViewSet):
+class AlerteViewSet(viewsets.ModelViewSet):
     permission_classes = [IsSuperOrOnlyGet]
-    queryset = Categorie.objects.all()
-    serializer_class = CategorieSerializer
+    queryset = Alerte.objects.all()
+    serializer_class = AlerteSerializer
 
 
 class HistoryLoginViewSet(viewsets.ModelViewSet):
