@@ -16,22 +16,43 @@ class MagasinSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class ProduitSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Produit
-        fields = "__all__"
-
-
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
         fields = "__all__"
 
 
+class ProduitAlleeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Produit
+        fields = ["id", "name"]
+
+
+class AlleeReserveCategorieSerializer(serializers.ModelSerializer):
+    produits = ProduitAlleeSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = AlleeReserve
+        fields = ["id", "number", "floor", "produits"]
+
+
+class AlleeMagasinCategorieSerializer(serializers.ModelSerializer):
+    produits = ProduitAlleeSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = AlleeMagasin
+        fields = ["id", "number", "produits"]
+
+
 class CategorieSerializer(serializers.ModelSerializer):
 
     role = serializers.CharField(source="role.name")
-    produits = ProduitSerializer(source="produits", many=True, read_only=True)
+    alleeMagasin = AlleeMagasinCategorieSerializer(
+        source="alleemagasins", many=True, read_only=True
+    )
+    alleeReserve = AlleeReserveCategorieSerializer(
+        source="alleereserves", many=True, read_only=True
+    )
 
     class Meta:
         model = Categorie
@@ -39,14 +60,29 @@ class CategorieSerializer(serializers.ModelSerializer):
 
 
 class AlleeReserveSerializer(serializers.ModelSerializer):
+
+    categorie = serializers.CharField(source="categorie.name")
+
     class Meta:
         model = AlleeReserve
         fields = "__all__"
 
 
 class AlleeMagasinSerializer(serializers.ModelSerializer):
+
+    categorie = serializers.CharField(source="categorie.name")
+
     class Meta:
         model = AlleeMagasin
+        fields = "__all__"
+
+
+class ProduitSerializer(serializers.ModelSerializer):
+    alleeMagasin = AlleeMagasinSerializer()
+    alleeReserve = AlleeReserveSerializer()
+
+    class Meta:
+        model = Produit
         fields = "__all__"
 
 

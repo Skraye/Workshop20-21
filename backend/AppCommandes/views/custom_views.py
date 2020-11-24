@@ -12,7 +12,7 @@ def getUser(request):
     response_data = {}
     response_data["mail"] = request.user.email
     response_data["isManager"] = request.user.is_superuser
-    response_data["role"] = request.user.role
+    response_data["role"] = str(request.user.role)
     return Response(response_data, 200)
 
 
@@ -47,8 +47,3 @@ class CustomObtainAuthToken(ObtainAuthToken):
         token = Token.objects.get(key=response.data["token"])
         return Response({"username": request.data["username"], "token": token.key})
 
-
-@api_view(["GET"])
-@permission_classes([IsAuthenticated])
-def getUser(request):
-    return Response(response_data, 200)
