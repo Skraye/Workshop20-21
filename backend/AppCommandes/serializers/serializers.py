@@ -25,7 +25,7 @@ class RoleSerializer(serializers.ModelSerializer):
 class ProduitAlleeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Produit
-        fields = ["id", "name"]
+        fields = ["id", "name", "price", "stock"]
 
 
 class AlleeReserveCategorieSerializer(serializers.ModelSerializer):
