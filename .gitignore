@@ -1,4 +1,5 @@
 /venv
+/backend/venv
 *.pyc
 /backend/AppCommandes/__pycache__
 backend/static/

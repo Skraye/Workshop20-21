@@ -4,7 +4,6 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import api_view, permission_classes
 from ..models import *
-from django.contrib.auth.models import User
 
 
 @api_view(["GET"])
@@ -43,7 +42,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
         print(request.data["username"])
         HistoryLogin.objects.create(
             ipAddress=get_client_ip(request),
-            mail=User.objects.get(username=request.data["username"]).email,
+            mail=AppUser.objects.get(username=request.data["username"]).email,
         )
         token = Token.objects.get(key=response.data["token"])
         return Response({"username": request.data["username"], "token": token.key})
