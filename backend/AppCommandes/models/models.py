@@ -65,9 +65,6 @@ class Produit(models.Model):
     alleeReserve = models.ForeignKey(
         AlleeReserve, on_delete=models.CASCADE, related_name="produits"
     )
-    categorie = models.ForeignKey(
-        Categorie, on_delete=models.CASCADE, related_name="produits"
-    )
 
     def __str__(self):
         return self.name
@@ -76,7 +73,7 @@ class Produit(models.Model):
 class Alerte(models.Model):
     codeProblems = models.CharField(max_length=4)
     produit = models.ForeignKey(
-        Produit, on_delete=models.CASCADE, related_name="alerte", null=True
+        Produit, on_delete=models.CASCADE, related_name="alerte", null=True, blank=True
     )
     alleeMagasin = models.ForeignKey(
         AlleeMagasin, on_delete=models.CASCADE, related_name="alerte", null=True
