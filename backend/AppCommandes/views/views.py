@@ -23,6 +23,13 @@ class AlerteViewSet(viewsets.ModelViewSet):
     queryset = Alerte.objects.all()
     serializer_class = AlerteSerializer
 
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_superuser:
+            return self.queryset
+        else:
+            return Alerte.objects.filter(alleeMagasin__categorie__role=user.role)
+
 
 class HistoryLoginViewSet(viewsets.ModelViewSet):
     permission_classes = [OnlyGet, IsAuthenticated]
