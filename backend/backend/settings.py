@@ -28,7 +28,7 @@ SECRET_KEY = "hs*__2)w*aij1d72*yt__&b*s#&6ezb*@449h!l4kh)rjygmz7"
 DEBUG = True
 
 CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ALLOW_HEADERS = default_headers + ("Access-Control-Allow-Origin",)
+CORS_ALLOW_HEADERS = default_headers + ("Access-Control-Allow-Origin",)
 ALLOWED_HOSTS = ["*"]
 
 
