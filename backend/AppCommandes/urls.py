@@ -5,6 +5,7 @@ from .views import *
 
 router = routers.DefaultRouter()
 router.register(r"produits", ProduitViewSet)
+router.register(r"categories", CategorieViewSet)
 router.register(r"historique-login", HistoryLoginViewSet)
 router.register(r"support-app", SupportAppViewSet)
 

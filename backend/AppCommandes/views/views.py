@@ -12,6 +12,18 @@ class ProduitViewSet(viewsets.ModelViewSet):
     serializer_class = ProduitSerializer
 
 
+class CategorieViewSet(viewsets.ModelViewSet):
+    permission_classes = [OnlyGet, IsAuthenticated]
+    queryset = Categorie.objects.all()
+    serializer_class = CategorieSerializer
+
+
+class CategorieViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsSuperOrOnlyGet]
+    queryset = Categorie.objects.all()
+    serializer_class = CategorieSerializer
+
+
 class HistoryLoginViewSet(viewsets.ModelViewSet):
     permission_classes = [OnlyGet, IsAuthenticated]
     queryset = HistoryLogin.objects.all()

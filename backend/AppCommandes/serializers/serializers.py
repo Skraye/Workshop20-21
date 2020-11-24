@@ -16,6 +16,12 @@ class MagasinSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class ProduitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Produit
+        fields = "__all__"
+
+
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
@@ -23,6 +29,10 @@ class RoleSerializer(serializers.ModelSerializer):
 
 
 class CategorieSerializer(serializers.ModelSerializer):
+
+    role = serializers.CharField(source="role.name")
+    produits = ProduitSerializer(source="produits", many=True, read_only=True)
+
     class Meta:
         model = Categorie
         fields = "__all__"
@@ -37,12 +47,6 @@ class AlleeReserveSerializer(serializers.ModelSerializer):
 class AlleeMagasinSerializer(serializers.ModelSerializer):
     class Meta:
         model = AlleeMagasin
-        fields = "__all__"
-
-
-class ProduitSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Produit
         fields = "__all__"
 
 

@@ -39,7 +39,7 @@ class AlleeReserve(models.Model):
     )
 
     def __str__(self):
-        return self.number
+        return str(self.number)
 
 
 class AlleeMagasin(models.Model):
@@ -50,7 +50,7 @@ class AlleeMagasin(models.Model):
     )
 
     def __str__(self):
-        return self.number
+        return str(self.number)
 
 
 class Produit(models.Model):
@@ -63,6 +63,9 @@ class Produit(models.Model):
     )
     alleeReserve = models.ForeignKey(
         AlleeReserve, on_delete=models.CASCADE, related_name="produits"
+    )
+    categorie = models.ForeignKey(
+        Categorie, on_delete=models.CASCADE, related_name="produits"
     )
 
     def __str__(self):
