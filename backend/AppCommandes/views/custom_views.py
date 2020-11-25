@@ -40,10 +40,17 @@ class CustomObtainAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
         print(request.data["username"])
+        user = AppUser.objects.get(username=request.data["username"])
         HistoryLogin.objects.create(
-            ipAddress=get_client_ip(request),
-            mail=AppUser.objects.get(username=request.data["username"]).email,
+            ipAddress=get_client_ip(request), mail=user.email,
         )
         token = Token.objects.get(key=response.data["token"])
-        return Response({"username": request.data["username"], "token": token.key})
+        return Response(
+            {
+                "username": request.data["username"],
+                "token": token.key,
+                "isManager": user.is_superuser,
+                "role": str(user.role),
+            }
+        )
 
