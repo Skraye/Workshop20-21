@@ -8,7 +8,7 @@ from .forms import AppUserCreationForm, AppUserChangeForm
 
 class AppUserAdmin(UserAdmin):
     fieldsets = (
-        (None, {"fields": ("email", "password")}),
+        (None, {"fields": ("email", "password", "username")}),
         ("Personal info", {"fields": ("first_name", "last_name", "role",)},),
         (
             "Permissions",
@@ -25,7 +25,13 @@ class AppUserAdmin(UserAdmin):
         ("Important dates", {"fields": ("last_login", "date_joined")}),
     )
     add_fieldsets = (
-        (None, {"classes": ("wide",), "fields": ("email", "password1", "password2")}),
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": ("email", "password1", "password2", "username"),
+            },
+        ),
     )
     add_form = AppUserCreationForm
     form = AppUserChangeForm
